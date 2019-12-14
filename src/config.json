@@ -1,0 +1,9 @@
+{
+    "cred_rel_path": "accounts",
+    "token_rel_path": "tokens",
+    "flow_ext": ".pickle",
+    "scopes": [
+        "https://www.googleapis.com/auth/gmail.readonly",
+        "https://www.googleapis.com/auth/gmail.send"
+    ]
+}
