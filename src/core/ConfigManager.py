@@ -30,10 +30,10 @@ class ConfigManager(Singleton):
         super().__init__
         with open(CONFIG_PATH, "r") as config_file:
             self.config = json.load(config_file)
-    
+
     def get_cred_dir(self):
         return self.config[ACCOUNT_DATA_KEY][CRED_DIR_KEY]
-    
+
     def get_token_dir(self):
         return self.config[ACCOUNT_DATA_KEY][TOKEN_DIR_KEY]
 
@@ -62,7 +62,7 @@ class ConfigManager(Singleton):
 
     def get_unread_label(self):
         return self.config[API_DATA_KEY][UNREAD_KEY]
-    
+
     def get_labels(self):
         return self.config[API_DATA_KEY][EXTRA_KEY]
 
@@ -73,4 +73,4 @@ class ConfigManager(Singleton):
         return self.config[API_DATA_KEY][PAYLOAD_LABELS_KEY]
 
     def get_payload_headers(self):
-        return self.config[API_DATA_KEY][PAYLOAD_HEADERS_KEY] 
+        return self.config[API_DATA_KEY][PAYLOAD_HEADERS_KEY]
