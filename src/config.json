@@ -1,9 +1,20 @@
 {
-    "cred_rel_path": "accounts",
-    "token_rel_path": "tokens",
-    "flow_ext": ".pickle",
-    "scopes": [
-        "https://www.googleapis.com/auth/gmail.readonly",
-        "https://www.googleapis.com/auth/gmail.send"
-    ]
+    "accounts": {
+        "cred_rel_path": "accounts",
+        "token_rel_path": "tokens",
+        "flow_ext": ".pickle",
+        "scopes": [
+            "https://www.googleapis.com/auth/gmail.readonly",
+            "https://www.googleapis.com/auth/gmail.send"
+        ]
+    },
+    "api": {
+        "user_id": "me",
+        "unread_label": "UNREAD",
+        "ext_labels": ["IMPORTANT"],
+        "acct_payload": "messages",
+        "message_labels": "labelIds",
+        "message_data": "payload",
+        "message_headers": "headers"
+    }
 }

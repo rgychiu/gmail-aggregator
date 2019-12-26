@@ -23,6 +23,7 @@ def main():
     scopes = manager.get_scopes()
 
     # complete authorization flow for all accounts
+    # TODO: allow for manual addition of accounts rather than predefining and for looping for greater user experience
     for account in users:
         oauth_creds = None
         oauth_session_file = get_alias(cred_dir, account) + token_ext
@@ -45,19 +46,26 @@ def main():
             with open(token_dir + "/" + oauth_session_file, "wb") as token:
                 pickle.dump(oauth_creds, token)
 
-    # service = build('gmail', 'v1', credentials=creds)
+        # Fetch API constants and credentials from config
+        api_user = manager.get_api_user()
+        unread_label = manager.get_unread_label()
+        filter_labels = set(manager.get_labels())
+        
+        acct_payload = manager.get_acct_messages()
+        payload_labels = manager.get_payload_labels()
+        payload_data = manager.get_payload()
+        payload_headers = manager.get_payload_headers()
 
-    # # Call the Gmail API
-    # results = service.users().labels().list(userId='me').execute()
-    # labels = results.get('labels', [])
-
-    # if not labels:
-    #     print('No labels found.')
-    # else:
-    #     print('Labels:')
-    #     for label in labels:
-    #         print(label['name'])
-
+        # Call the Gmail API, retrieve important emails from each account
+        service = build('gmail', 'v1', credentials=oauth_creds)
+        messages = service.users().messages().list(userId=api_user).execute()
+        for msg in messages.get(acct_payload):
+            # for each message, get the associated labels to check if its unread and important
+            msg_data = service.users().messages().get(userId=api_user, id=msg.get('id')).execute()
+            msg_labels = set(msg_data.get(payload_labels))
+            if unread_label in msg_labels and len(msg_labels.intersection(filter_labels)):
+                print(msg_data.get(payload_data).get(payload_headers))
+        # print(result.get(payload_labels), result.get(payload_data).get(payload_headers))
 
 if __name__ == "__main__":
     main()
