@@ -26,6 +26,7 @@ PAYLOAD_HEADERS_KEY = "message_headers"
 
 
 class ConfigManager(Singleton):
+    # TODO: Create docstrings for functions
     def __init__(self):
         super().__init__
         with open(CONFIG_PATH, "r") as config_file:

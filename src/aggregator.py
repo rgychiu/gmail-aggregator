@@ -3,7 +3,7 @@ import os.path
 import json
 
 from core.ConfigManager import ConfigManager
-from utils.utils import get_alias
+from utils.utils import get_alias, get_metadata
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -73,7 +73,10 @@ def main():
             if unread_label in msg_labels and len(
                 msg_labels.intersection(filter_labels)
             ):
-                print(msg_data.get(payload_data).get(payload_headers))
+                summary_headers = get_metadata(
+                    msg_data.get(payload_data).get(payload_headers)
+                )
+                print(summary_headers)
         # print(result.get(payload_labels), result.get(payload_data).get(payload_headers))
 
 
