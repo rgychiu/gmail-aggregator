@@ -24,6 +24,12 @@ PAYLOAD_KEY = "message_data"
 PAYLOAD_LABELS_KEY = "message_labels"
 PAYLOAD_HEADERS_KEY = "message_headers"
 
+# Custom Mail Keys
+TEMPLATE_KEY = "template"
+SINGLE_MSG_KEY = "single"
+INBOX_MSG_KEY = "account"
+AGGREGATE_MSG_KEY = "aggregate"
+
 
 class ConfigManager(Singleton):
     # TODO: Create docstrings for functions
@@ -75,3 +81,12 @@ class ConfigManager(Singleton):
 
     def get_payload_headers(self):
         return self.config[API_DATA_KEY][PAYLOAD_HEADERS_KEY]
+
+    def get_single_msg_temp(self):
+        return self.config[TEMPLATE_KEY][SINGLE_MSG_KEY]
+
+    def get_inbox_msg_temp(self):
+        return self.config[TEMPLATE_KEY][INBOX_MSG_KEY]
+
+    def get_agg_msg_temp(self):
+        return self.config[TEMPLATE_KEY][AGGREGATE_MSG_KEY]

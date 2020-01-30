@@ -16,5 +16,10 @@
         "message_labels": "labelIds",
         "message_data": "payload",
         "message_headers": "headers"
+    },
+    "template": {
+        "single": "Date: {date}, From: {sender}, To: {recipient}, Subject: {subject}",
+        "account": "Under inbox {name}:\n{body}",
+        "aggregate": "Hello,\n\nHere is your configured email-aggregated digest for your inboxes:\n\n{body}\n\nThanks,\nGmail-Aggregator Team"
     }
 }
